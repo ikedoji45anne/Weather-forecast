@@ -88,10 +88,18 @@ main {
     justify-content: space-between;
     color: #000;
 }
+
+.weather-forecast-icon {
+width: 88px; 
+height: 88px;
+display: block;
+margin: 0 auto;
+}
 .weather-forecast-date {
     font-size: 16px;
     opacity: 0.5;
 }
+
  .Weather-forecast-temperature-min {
     opacity: 0.5;
 }

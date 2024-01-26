@@ -62,28 +62,34 @@ function getForecast(city) {
    axios(apiUrl).then(displayForecast); 
 }
 
+function formatDay(timestemp) {
+ let date = new Date(timestemp * 1000);  
+ let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+ 
+ return days[date.getDay()];
+}
+
 function displayForecast(response) {
     console.log(response.data);
 
-    
-    let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
     let forecastHtml ="";
 
-    days.forEach(function (day) {
+    response.data.daily.forEach(function (day, index) {
+        if(index < 5) {
         forecastHtml =  forecastHtml + 
          `
          <div class="row">
 <div class="col-2">
-   <div class="weather-forecast-date">${day}</div> 
-<img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
-     alt="" width="50"/>
+   <div class="weather-forecast-date">${formatDay(time.day)}</div> 
+<img src="${day.condition.icon_url}" class="weather-forecast-icon"/>
      <div class="Weather-forecast-temperature">
-    <span class="Weather-forecast-temperature-max"> 18</span> 
-    <span class="Weather-forecast-temperature-min">12</span>
+    <span class="Weather-forecast-temperature-max">${Math.round(day.temperature.maximum)}°</span> 
+    <span class="Weather-forecast-temperature-min">${Math.round(day.temperature.minimum)}°</span>
     </div>
 </div>
 </div>
 `;
+}
     });
 
     let forecastElement = document.querySelector("#forecast");
