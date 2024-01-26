@@ -55,8 +55,39 @@ function handleSearch(event) {
     searchCity(searchInput.value);
 }
 
+function displayForecast() {
+
+    
+    let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+    let forecastHtml ="";
+
+    days.forEach(function (day) {
+        forecastHtml =  forecastHtml + 
+         `
+         <div class="row">
+<div class="col-2">
+   <div class="weather-forecast-date">${day}</div> 
+<img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
+     alt="" width="50"/>
+     <div class="Weather-forecast-temperature">
+    <span class="Weather-forecast-temperature-max"> 18</span> 
+    <span class="Weather-forecast-temperature-min">12</span>
+    </div>
+</div>
+</div>
+`;
+    });
+
+    let forecastElement = document.querySelector("#forecast");
+   forecastElement.innerHTML = forecastHtml;
+}
+
 
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearch);
 searchCity("Paris");
+displayForecast();
+
+
+
