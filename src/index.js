@@ -70,7 +70,7 @@ function formatDay(timestemp) {
 }
 
 function displayForecast(response) {
-    console.log(response.data);
+
 
     let forecastHtml ="";
 
@@ -80,7 +80,7 @@ function displayForecast(response) {
          `
          <div class="row">
 <div class="col-2">
-   <div class="weather-forecast-date">${formatDay(time.day)}</div> 
+   <div class="weather-forecast-date">${formatDay(day.time)}</div> 
 <img src="${day.condition.icon_url}" class="weather-forecast-icon"/>
      <div class="Weather-forecast-temperature">
     <span class="Weather-forecast-temperature-max">${Math.round(day.temperature.maximum)}°</span> 
